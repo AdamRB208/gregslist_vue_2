@@ -18,9 +18,6 @@ const account = computed(() => AppState.account)
   <div class="row shadow-lg mb-4 job-border">
     <div class="col-md-7 w-100">
       <div class="p-3">
-        <!-- <div>
-          <small class="d-flex">{{ jobProp.createdAt.toLocaleDateString() }}</small>
-        </div> -->
         <div class="d-flex flex-column justify-content-between fs-4">
           <p> Company: {{ jobProp.company }}</p>
           <p>Job Title: {{ jobProp.jobTitle }}</p>
@@ -32,11 +29,11 @@ const account = computed(() => AppState.account)
         <div>
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <button v-if="jobProp.creatorId == account?.id" class="btn btn-outline-danger" type="button">Delete
+              <button v-if="jobProp.creatorId == account?.id" class="btn btn-outline-danger mt-3" type="button">Delete
                 Job Posting</button>
             </div>
           </div>
-          <div class="d-flex flex-row-reverse align-items-center gap-3 mt-3">
+          <div class="d-flex flex-row-reverse align-items-center gap-3 mt-0">
             <p class="mb-0">{{ jobProp.creator.name }}</p>
             <img :src="jobProp.creator.picture" alt="profile picture of the listings creator" class="creator-img">
           </div>
@@ -62,9 +59,5 @@ img {
   height: 3.7em;
   aspect-ratio: 1/1;
   border-radius: 50%;
-}
-
-small {
-  justify-content: flex-end;
 }
 </style>
