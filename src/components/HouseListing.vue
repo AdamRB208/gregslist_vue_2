@@ -22,4 +22,9 @@ defineProps({
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+img {
+  height: 45dvh;
+  object-fit: cover;
+}
+</style>
