@@ -7,5 +7,7 @@ export class Job {
     this.hours = data.hours
     this.jobTitle = data.jobTitle
     this.company = data.company
+    this.creator = data.creator
+    this.createdAt = new Date()
   }
 }
