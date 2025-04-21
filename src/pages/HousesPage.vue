@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import HouseForm from '@/components/HouseForm.vue';
 import HouseListing from '@/components/HouseListing.vue';
 import { House } from '@/models/Houses.js';
 import { housesService } from '@/services/HousesService.js';
@@ -40,7 +41,7 @@ async function getHouses() {
   <section class="container">
     <div class="row">
       <div class="col-md-6">
-        Form here
+        <HouseForm />
       </div>
       <div class="col-md-6">
         <img class="mb-3"
