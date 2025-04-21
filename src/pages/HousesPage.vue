@@ -2,7 +2,6 @@
 import { AppState } from '@/AppState.js';
 import HouseForm from '@/components/HouseForm.vue';
 import HouseListing from '@/components/HouseListing.vue';
-import { House } from '@/models/Houses.js';
 import { housesService } from '@/services/HousesService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
@@ -39,7 +38,7 @@ async function getHouses() {
       </div>
     </div>
   </section>
-  <section class="container">
+  <section v-if="account" class="container">
     <div class="row">
       <div class="col-md-6">
         <HouseForm />

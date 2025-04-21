@@ -34,7 +34,8 @@ async function deleteHouse(houseId) {
 <template>
   <div class="row shadow-lg mb-4 house-border">
     <div class="col-md-5 px-0">
-      <img :src="houseProp.imgUrl" :alt="`a picture of a ${houseProp.year} ${houseProp.description}`" class="w-100">
+      <img :src="houseProp.imgUrl" :alt="`a picture of a ${houseProp.year} ${houseProp.description}`"
+        class="w-100 h-100">
     </div>
     <div class="col-md-7">
       <div class="p-3">
