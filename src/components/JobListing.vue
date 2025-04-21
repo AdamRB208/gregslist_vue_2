@@ -16,7 +16,7 @@ const account = computed(() => AppState.account)
 
 <template>
   <div class="row shadow-lg mb-4 job-border">
-    <div class="col-md-7">
+    <div class="col-md-7 w-100">
       <div class="p-3">
         <div>
           <small class="d-flex">{{ jobProp.createdAt.toLocaleDateString() }}</small>
