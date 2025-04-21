@@ -30,6 +30,11 @@
                 Houses
               </button>
             </RouterLink>
+            <RouterLink :to="{ name: 'Jobs' }">
+              <button class="btn btn-outline-vue fs-2" type="button">
+                Jobs
+              </button>
+            </RouterLink>
           </div>
         </div>
       </div>
