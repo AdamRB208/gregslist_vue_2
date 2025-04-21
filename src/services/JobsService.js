@@ -7,14 +7,18 @@ class JobsService {
   async deleteJob(jobId) {
     const response = await api.delete(`api/jobs/${jobId}`)
     logger.log('deleted job', response.data)
+    const jobs = AppState.jobs
+    const jobIndex = jobs.findIndex(job => job.id == jobId)
+    jobs.splice(jobIndex, 1)
+    logger.log('Job deleted successfully')
   }
+
   async createJob(jobData) {
     const response = await api.post('api/jobs', jobData)
     logger.log('created job', response.data)
     const job = new Job(response.data)
     AppState.jobs.push(job)
     logger.log('created job rendering');
-
   }
 
   async getJobs() {
@@ -24,7 +28,6 @@ class JobsService {
     AppState.jobs = jobs
     logger.log('job data rendering')
   }
-
 }
 
 export const jobsService = new JobsService()
