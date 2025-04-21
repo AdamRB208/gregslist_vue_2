@@ -1,6 +1,9 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import { House } from '@/models/Houses.js';
+import { housesService } from '@/services/HousesService.js';
+import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
 import { computed } from 'vue';
 
 
@@ -9,6 +12,21 @@ defineProps({
 })
 
 const account = computed(() => AppState.account)
+
+async function deleteHouse(houseId) {
+  try {
+    const confirmed = await Pop.confirm('Are you sure you want to delete this house?', 'It will be gone forever!', 'Yes I am sure', "I've changed my mind")
+
+    if (!confirmed) {
+      return
+    }
+    await housesService.deleteHouse(houseId)
+  }
+  catch (error) {
+    Pop.error(error, 'could not delete house');
+    logger.log('COULD NOT DELETE HOUSE', error)
+  }
+}
 
 </script>
 
@@ -24,18 +42,19 @@ const account = computed(() => AppState.account)
           <small class="d-flex">{{ houseProp.createdAt.toLocaleDateString() }}</small>
         </div>
         <div class="d-flex flex-column justify-content-between fs-3">
-          <p> Year: {{ houseProp.year }} </p>
+          <p> Year: {{ houseProp.year }}</p>
+          <p>Levels: {{ houseProp.levels }}</p>
           <p>Bedrooms: {{ houseProp.bedrooms }} </p>
           <p>Bathrooms: {{ houseProp.bathrooms }}</p>
-          <p>Levels:{{ houseProp.levels }}</p>
         </div>
-        <p class="fs-3">Price: ${{ houseProp.price }}</p>
+        <p class="fs-3">Price: {{ '$' + houseProp.price.toLocaleString() }}</p>
         <p Description: v-if="houseProp.description">{{ houseProp.description }}</p>
         <p v-else>A lovely Home</p>
         <div>
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <button v-if="houseProp.creatorId == account?.id" class="btn btn-outline-danger" type="button">Delete
+              <button v-if="houseProp.creatorId == account?.id" @click="deleteHouse(houseProp.id)"
+                class="btn btn-outline-danger" type="button">Delete
                 Listing</button>
             </div>
           </div>
