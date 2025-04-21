@@ -9,5 +9,7 @@ export class House {
     this.creatorId = data.creatorId
     this.description = data.description
     this.imgUrl = data.imgUrl
+    this.createdAt = new Date()
+    this.creator = data.creator
   }
 }

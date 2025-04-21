@@ -9,7 +9,7 @@ import { computed, onMounted } from 'vue';
 
 
 const houses = computed(() => AppState.houses)
-
+const account = computed(() => AppState.account)
 
 onMounted(() => {
   getHouses()
