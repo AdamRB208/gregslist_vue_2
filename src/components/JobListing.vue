@@ -1,6 +1,9 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import { Job } from '@/models/Jobs.js';
+import { jobsService } from '@/services/JobsService.js';
+import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
 import { computed } from 'vue';
 
 
@@ -10,6 +13,20 @@ defineProps({
 
 const account = computed(() => AppState.account)
 
+async function deleteJob(jobId) {
+  try {
+    const confrimed = await Pop.confirm('Are you sure you want to delete this job?', 'It will be gone forever!', 'Yes I am sure', "I've changed my mind")
+
+    if (!confrimed) {
+      return
+    }
+    await jobsService.deleteJob(jobId)
+  }
+  catch (error) {
+    Pop.error(error, 'could not delete job');
+    logger.log('COULD NOT DELETE JOB', error)
+  }
+}
 
 </script>
 
@@ -29,7 +46,8 @@ const account = computed(() => AppState.account)
         <div>
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <button v-if="jobProp.creatorId == account?.id" class="btn btn-outline-danger mt-3" type="button">Delete
+              <button v-if="jobProp.creatorId == account?.id" @click="deleteJob(jobProp.id)"
+                class="btn btn-outline-danger mt-3" type="button">Delete
                 Job Posting</button>
             </div>
           </div>

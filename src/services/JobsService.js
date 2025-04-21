@@ -4,6 +4,10 @@ import { Job } from "@/models/Jobs.js"
 import { AppState } from "@/AppState.js"
 
 class JobsService {
+  async deleteJob(jobId) {
+    const response = await api.delete(`api/jobs/${jobId}`)
+    logger.log('deleted job', response.data)
+  }
   async createJob(jobData) {
     const response = await api.post('api/jobs', jobData)
     logger.log('created job', response.data)
