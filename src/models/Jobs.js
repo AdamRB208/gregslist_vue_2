@@ -8,6 +8,5 @@ export class Job {
     this.jobTitle = data.jobTitle
     this.company = data.company
     this.creator = data.creator
-    this.createdAt = new Date()
   }
 }

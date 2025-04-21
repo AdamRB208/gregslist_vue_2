@@ -18,9 +18,9 @@ const account = computed(() => AppState.account)
   <div class="row shadow-lg mb-4 job-border">
     <div class="col-md-7 w-100">
       <div class="p-3">
-        <div>
+        <!-- <div>
           <small class="d-flex">{{ jobProp.createdAt.toLocaleDateString() }}</small>
-        </div>
+        </div> -->
         <div class="d-flex flex-column justify-content-between fs-4">
           <p> Company: {{ jobProp.company }}</p>
           <p>Job Title: {{ jobProp.jobTitle }}</p>

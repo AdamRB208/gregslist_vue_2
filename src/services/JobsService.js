@@ -4,6 +4,15 @@ import { Job } from "@/models/Jobs.js"
 import { AppState } from "@/AppState.js"
 
 class JobsService {
+  async createJob(jobData) {
+    const response = await api.post('api/jobs', jobData)
+    logger.log('created job', response.data)
+    const job = new Job(response.data)
+    AppState.jobs.push(job)
+    logger.log('created job rendering');
+
+  }
+
   async getJobs() {
     const response = await api.get('api/jobs')
     logger.log('got jobs', response.data)
@@ -11,7 +20,6 @@ class JobsService {
     AppState.jobs = jobs
     logger.log('job data rendering')
   }
-
 
 }
 

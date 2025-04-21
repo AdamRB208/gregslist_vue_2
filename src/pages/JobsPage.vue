@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import JobForm from '@/components/JobForm.vue';
 import JobListing from '@/components/JobListing.vue';
 import { jobsService } from '@/services/JobsService.js';
 import { logger } from '@/utils/Logger.js';
@@ -39,7 +40,7 @@ async function getJobs() {
   <section v-if="account" class="container">
     <div class="row">
       <div class="col-md-6">
-        jobs form goes here
+        <JobForm />
       </div>
       <div class="col-md-6">
         <img class="mb-3 img-fluid rounded shadow-lg"
