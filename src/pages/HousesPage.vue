@@ -25,6 +25,13 @@
       </div>
     </div>
   </section>
+  <section class="container">
+    <div class="row">
+      <div class="col-12">
+        listings here
+      </div>
+    </div>
+  </section>
 </template>
 
 
