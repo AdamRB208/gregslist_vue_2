@@ -1,35 +1,57 @@
 <script setup>
+import { housesService } from '@/services/HousesService.js';
+import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
 import { ref } from 'vue';
 
 
 const editableHouseData = ref({
-  bedrooms: 0,
-  bathrooms: 0,
-  levels: 0,
-  year: 1820,
+  bedrooms: '',
+  bathrooms: '',
+  levels: '',
+  year: '',
   imgUrl: '',
-  price: 0,
-  description: '',
+  price: '',
+  description: ''
 })
 
+async function createHouse() {
+  try {
+    const houseData = editableHouseData.value
+    await housesService.createHouse(houseData)
+    editableHouseData.value = {
+      bedrooms: '',
+      bathrooms: '',
+      levels: '',
+      year: '',
+      imgUrl: '',
+      price: '',
+      description: ''
+    }
+  }
+  catch (error) {
+    Pop.error(error, 'could not create house');
+    logger.log('COULD NOT CREATE HOUSE', error)
+  }
+}
 
 </script>
 
 
 <template>
-  <form>
+  <form @submit.prevent="createHouse()">
     <div class="mb-3">
-      <label for="bedrooms"> Bedrooms: 0</label>
+      <label for="bedrooms"> Bedrooms</label>
       <input v-model="editableHouseData.bedrooms" id="houseBedrooms" name="bedrooms" type="number" required min="1"
         max="10" placeholder="0">
     </div>
     <div class="mb-3">
-      <label for="bathrooms">Bathrooms: 0</label>
+      <label for="bathrooms">Bathrooms</label>
       <input v-model="editableHouseData.bathrooms" id="houseBathrooms" name="bathrooms" type="number" required min="1"
         max="10" placeholder="0">
     </div>
     <div class="mb-3">
-      <label for="levels">Levels: 0</label>
+      <label for="levels">Levels</label>
       <input v-model="editableHouseData.levels" id="houseLevels" name="levels" type="number" required min="1" max="10"
         placeholder="0">
     </div>

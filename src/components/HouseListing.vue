@@ -20,12 +20,14 @@ const account = computed(() => AppState.account)
     </div>
     <div class="col-md-7">
       <div class="p-3">
-        <div class="d-flex justify-content-between">
-          <p class="fs-3"> Year: {{ houseProp.year }} Bedrooms: {{ houseProp.bedrooms }} Bathrooms: {{
-            houseProp.bathrooms }} Levels:
-            {{ houseProp.levels }}
-          </p>
-          <small>{{ houseProp.createdAt }}</small>
+        <div>
+          <small class="d-flex">{{ houseProp.createdAt.toLocaleDateString() }}</small>
+        </div>
+        <div class="d-flex flex-column justify-content-between fs-3">
+          <p> Year: {{ houseProp.year }} </p>
+          <p>Bedrooms: {{ houseProp.bedrooms }} </p>
+          <p>Bathrooms: {{ houseProp.bathrooms }}</p>
+          <p>Levels:{{ houseProp.levels }}</p>
         </div>
         <p class="fs-3">Price: ${{ houseProp.price }}</p>
         <p Description: v-if="houseProp.description">{{ houseProp.description }}</p>
@@ -37,7 +39,7 @@ const account = computed(() => AppState.account)
                 Listing</button>
             </div>
           </div>
-          <div class="d-flex align-items-center gap-3 mt-3">
+          <div class="d-flex flex-row-reverse align-items-center gap-3 mt-3">
             <p class="mb-0">{{ houseProp.creator.name }}</p>
             <img :src="houseProp.creator.picture" alt="profile picture of the listings creator" class="creator-img">
           </div>
@@ -51,7 +53,6 @@ const account = computed(() => AppState.account)
 <style lang="scss" scoped>
 img {
   height: 45dvh;
-
   object-fit: cover;
 }
 
@@ -64,5 +65,9 @@ img {
   height: 3.7em;
   aspect-ratio: 1/1;
   border-radius: 50%;
+}
+
+small {
+  justify-content: flex-end;
 }
 </style>
