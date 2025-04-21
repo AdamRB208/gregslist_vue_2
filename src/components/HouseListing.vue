@@ -27,13 +27,14 @@ const account = computed(() => AppState.account)
           </p>
           <small>{{ houseProp.createdAt }}</small>
         </div>
-        <p class="fs-3">Price: {{ houseProp.price }}</p>
+        <p class="fs-3">Price: ${{ houseProp.price }}</p>
         <p Description: v-if="houseProp.description">{{ houseProp.description }}</p>
         <p v-else>A lovely Home</p>
         <div>
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <button>Delete Listing</button>
+              <button v-if="houseProp.creatorId == account?.id" class="btn btn-outline-danger" type="button">Delete
+                Listing</button>
             </div>
           </div>
           <div class="d-flex align-items-center gap-3 mt-3">
